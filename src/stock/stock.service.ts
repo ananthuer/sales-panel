@@ -37,11 +37,13 @@ async  remove(id: number) {
     return await Stock.destroy({where:{id:id}});
   }
 
-  async monthly(id: number){
+  async monthly(id: number, month: string){
 
     let wholesaler = await Wholesaler.findByPk(id)
 
-    let stock = await wholesaler.getStocks()
+    let stock = await wholesaler.getStocks({where:{date:{
+      [sequelize.Op.eq]: month
+    }}})
 
     let totalrevenue: number = stock.reduce((amt, cp) => amt + cp.getTotal(), 0)
 

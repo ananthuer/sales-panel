@@ -11,8 +11,8 @@ async function bootstrap() {
   //app.use(tokenparser)
 
   const config = new DocumentBuilder()
-  .setTitle('Click On')
-  .setDescription('The click on API description')
+  .setTitle('Sales Panel')
+  .setDescription('The Sales Panel API description')
   .setVersion('1.0')
   .addApiKey({
     name: 'x-access-token',

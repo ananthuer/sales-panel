@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { StockService } from './stock.service';
 import { CreateStockDto } from './dto/create-stock.dto';
 import { UpdateStockDto } from './dto/update-stock.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Stock')
 @Controller('stock')
@@ -35,8 +35,12 @@ export class StockController {
   }
 
   @Get('wholesaler/:id')
-  monthly(@Param('id') id: string) {
-    return this.stockService.monthly(+id);
+  @ApiQuery({
+    name: "Month",
+    required: false
+  })
+  monthly(@Param('id') id: string, @Query('Month') month: string) {
+    return this.stockService.monthly(+id, month);
   }
   @Get('retailer/wholesaler/:id')
   maxTurnOver(@Param('id') id: string) {

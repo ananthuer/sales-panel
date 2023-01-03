@@ -44,4 +44,6 @@ export class RetailerService {
       }
     }});
   }
+
+  //***//let wholesaler = await Retailer.findOne({})
 }
